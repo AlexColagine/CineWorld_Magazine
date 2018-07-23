@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/backdrop_favorite"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:cropToPadding="false"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/poster_favorite"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/background_poster_favorite"
+        app:layout_constraintBottom_toBottomOf="@+id/backdrop_favorite"
+        app:layout_constraintLeft_toLeftOf="@+id/backdrop_favorite"
+        app:layout_constraintTop_toTopOf="@+id/backdrop_favorite"
+        app:layout_constraintVertical_bias="0.85"
+        app:srcCompat="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/title_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        app:layout_constraintBottom_toBottomOf="@+id/backdrop_favorite"
+        app:layout_constraintTop_toTopOf="@+id/backdrop_favorite"
+        android:textColor="@android:color/background_light"
+        tools:textSize="24sp"
+        android:maxLines="1"
+        app:layout_constraintVertical_bias="0.6"
+        android:textStyle="normal|bold"
+        app:layout_constraintLeft_toRightOf="@+id/poster_favorite"
+        android:layout_marginLeft="24dp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginStart="24dp" />
+
+    <TextView
+        android:id="@+id/rating_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Rating"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintLeft_toLeftOf="@+id/title_favorite"
+        app:layout_constraintTop_toBottomOf="@+id/title_favorite" />
+
+    <TextView
+        android:id="@+id/date_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Date"
+        app:layout_constraintLeft_toLeftOf="@+id/rating_favorite"
+        app:layout_constraintTop_toBottomOf="@+id/rating_favorite"
+        android:textColor="@android:color/background_light" />
+
+</android.support.constraint.ConstraintLayout>
+
+

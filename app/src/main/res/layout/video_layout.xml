@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:adjustViewBounds="true"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/image_youtube"
+    android:background="@drawable/background_recycler_item_view"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:layout_width="wrap_content" />

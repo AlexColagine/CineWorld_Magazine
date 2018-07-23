@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">CineWorld Magazine</string>
+
+    <string name="no_internet_connection">There isn\'t internet connection</string>
+    <string name="movies_no_found">There isn\'t Movies</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- String Delete Movie -->
+    <string name="delete_movie_failed">Error with deleting movie</string>
+    <string name="delete_movie_successful">Movie deleted</string>
+
+    <!-- Fragments -->
+    <string name="most_popular">\t Most Popular</string>
+    <string name="top_rated">\t Top Rated</string>
+    <string name="now_playing">\t Now Playing</string>
+    <string name="upcoming">\t Upcoming</string>
+    <string name="favorite">\t Favorites</string>
+
+    <!-- ShareIntent -->
+    <string name="share_text">Share</string>
+
+    <!-- Detail Movie -->
+    <string name="movie_date">Date</string>
+    <string name="movie_rating">Rating</string>
+    <string name="movie_videos">Videos</string>
+    <string name="movie_reviews">Reviews</string>
+    <string name="movie_plot">Plot</string>
+
+    <!-- Review  -->
+    <string name="author">Author</string>
+    <string name="content">Content</string>
+
+    <!-- Toast -->
+    <string name="favorite_insert">Favorite added</string>
+    <string name="favorite_delete">Favorite removed</string>
+
+    <!-- MENU OPTION -->
+    <string name="action_share">Share</string>
+</resources>
