@@ -381,11 +381,11 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return movieFragment;
                 case 1:
-                    return new MovieFragment();
+                    return movieFragment;
                 case 2:
-                    return new MovieFragment();
+                    return movieFragment;
                 case 3:
-                    return new MovieFragment();
+                    return movieFragment;
                 case 4:
                     return new Favorite();
             }
