@@ -8,11 +8,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.alex.android.cineworld.R;
 import com.alex.android.cineworld.pojo.Movie;
-import com.example.android.cineworld.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static com.alex.android.cineworld.utils.Utils.IMAGE_SIZE;
 import static com.alex.android.cineworld.utils.Utils.IMAGE_URL;
@@ -27,9 +27,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     final private ListItemClickListener mOnClickListener;
     private Context mContext;
-    public List<Movie> movieList;
+    public ArrayList<Movie> movieList;
 
-    public MovieAdapter(Context context, List<Movie> movieList, ListItemClickListener listener) {
+    public MovieAdapter(Context context, ArrayList<Movie> movieList, ListItemClickListener listener) {
         this.mContext = context;
         this.mOnClickListener = listener;
         this.movieList = movieList;

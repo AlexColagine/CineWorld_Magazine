@@ -7,7 +7,8 @@ import android.graphics.PorterDuffColorFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 
-import com.example.android.cineworld.BuildConfig;
+import com.alex.android.cineworld.BuildConfig;
+
 
 /**
  * Created by Alessandro on 02/03/2018.

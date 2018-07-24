@@ -1,4 +1,4 @@
-package com.example.android.cineworld.fragments;
+package com.alex.android.cineworld.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alex.android.cineworld.R;
 import com.alex.android.cineworld.adapters.MovieAdapter;
 import com.alex.android.cineworld.pojo.Movie;
 import com.alex.android.cineworld.ui.DetailActivity;
-import com.example.android.cineworld.R;
 
 import java.util.ArrayList;
 
@@ -29,8 +29,8 @@ import static com.alex.android.cineworld.utils.Utils.calculateNoOfColumns;
 
 public class MovieFragment extends Fragment implements MovieAdapter.ListItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private MovieAdapter mAdapter;
-    private ArrayList<Movie> movieArrayList = new ArrayList<>();
+    MovieAdapter mAdapter;
+    ArrayList<Movie> movieArrayList;
     private View mEmptyView;
     private TextView mEmptyTextView;
     private View loadingIndicator;
@@ -51,6 +51,7 @@ public class MovieFragment extends Fragment implements MovieAdapter.ListItemClic
         View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
 
         loadingIndicator = rootView.findViewById(R.id.loading_spinner);
+        loadingIndicator.setVisibility(View.VISIBLE);
         swipe = rootView.findViewById(R.id.swiperefresh);
         swipe.setOnRefreshListener(this);
 
@@ -71,8 +72,6 @@ public class MovieFragment extends Fragment implements MovieAdapter.ListItemClic
         }
         mAdapter = new MovieAdapter(getContext(), movieArrayList, this);
         movieRecycler.setAdapter(mAdapter);
-
-        loadingIndicator.setVisibility(View.VISIBLE);
 
         return rootView;
 

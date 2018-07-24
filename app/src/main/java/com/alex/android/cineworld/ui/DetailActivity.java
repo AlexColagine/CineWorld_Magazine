@@ -2,7 +2,6 @@ package com.alex.android.cineworld.ui;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
-import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,14 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.alex.android.cineworld.R;
 import com.alex.android.cineworld.adapters.ReviewAdapter;
 import com.alex.android.cineworld.adapters.VideoAdapter;
 import com.alex.android.cineworld.api.CineWorldApi;
@@ -32,7 +30,6 @@ import com.alex.android.cineworld.api.EndPoint;
 import com.alex.android.cineworld.pojo.Movie;
 import com.alex.android.cineworld.pojo.Review;
 import com.alex.android.cineworld.pojo.Video;
-import com.example.android.cineworld.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -102,11 +99,11 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!movieList.getFavorite()) {
-                    insertFavorite();
+                    //insertFavorite();
                     fab.setImageDrawable(ContextCompat.getDrawable(DetailActivity.this, R.drawable.icon_fill_fab));
                     movieList.setFavorite(true);
                 } else {
-                    deleteAllMovies();
+                    //deleteAllMovies();
                     fab.setImageDrawable(ContextCompat.getDrawable(DetailActivity.this, R.drawable.icon_fab));
                     movieList.setFavorite(false);
                 }
@@ -229,7 +226,7 @@ public class DetailActivity extends AppCompatActivity {
     /**
      * Add a Movie in Database --> Fragment --> Favorite
      */
-    private void insertFavorite() {
+ /*   private void insertFavorite() {
         ContentValues values = new ContentValues();
         values.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, movieList.getId());
         values.put(MovieContract.MovieEntry.COLUMN_TITLE, movieList.getTitle());
@@ -245,12 +242,12 @@ public class DetailActivity extends AppCompatActivity {
     /**
      * Delete a single movie with univocal ID
      */
-    private void deleteAllMovies() {
+  /*  private void deleteAllMovies() {
         int rowsDeleted = this.getContentResolver().delete(MovieContract.MovieEntry.CONTENT_URI,
                 MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + movieList.getId(), null);
         Toast.makeText(DetailActivity.this, getString(R.string.favorite_delete), Toast.LENGTH_SHORT).show();
         Log.v("DetailActivity", rowsDeleted + " rows deleted from movie database");
-    }
+    } */
 
     /**
      * Share through another app the Detail of the Movie

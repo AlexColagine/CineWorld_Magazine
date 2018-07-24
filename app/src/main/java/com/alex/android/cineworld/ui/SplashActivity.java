@@ -6,7 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 
-import com.example.android.cineworld.R;
+import com.alex.android.cineworld.R;
+
 
 /**
  * Created by Alessandro on 20/03/2018.

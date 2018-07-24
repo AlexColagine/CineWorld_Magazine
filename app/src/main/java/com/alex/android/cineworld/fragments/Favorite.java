@@ -1,10 +1,9 @@
-package com.example.android.cineworld.fragments;
+package com.alex.android.cineworld.fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,8 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alex.android.cineworld.R;
 import com.alex.android.cineworld.adapters.FavoriteAdapter;
-import com.example.android.cineworld.R;
+
 
 
 /**
@@ -48,14 +48,14 @@ public class Favorite extends Fragment implements
         mCursorFavoriteAdapter = new FavoriteAdapter(getContext(), null);
         favoriteRecycler.setAdapter(mCursorFavoriteAdapter);
 
-        getLoaderManager().initLoader(PASSWORD_LOADER, null, this);
+        //getLoaderManager().initLoader(PASSWORD_LOADER, null, this);
         setHasOptionsMenu(true);
         return rootView;
     }
 
-    @Override
+   @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String[] projection = {
+       /* String[] projection = {
                 MovieContract.MovieEntry.COLUMN_MOVIE_ID,
                 MovieContract.MovieEntry.COLUMN_TITLE,
                 MovieContract.MovieEntry.COLUMN_DATE,
@@ -70,7 +70,8 @@ public class Favorite extends Fragment implements
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
-                null);             // Default sort order
+                null);             // Default sort order  */
+       return null;
     }
 
     @Override

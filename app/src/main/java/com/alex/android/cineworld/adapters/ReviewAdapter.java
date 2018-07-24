@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alex.android.cineworld.R;
 import com.alex.android.cineworld.pojo.Review;
-import com.example.android.cineworld.R;
 
 import java.util.List;
 

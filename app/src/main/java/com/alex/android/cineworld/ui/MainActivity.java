@@ -18,16 +18,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alex.android.cineworld.R;
 import com.alex.android.cineworld.api.CineWorldApi;
 import com.alex.android.cineworld.api.EndPoint;
+import com.alex.android.cineworld.fragments.Favorite;
+import com.alex.android.cineworld.fragments.MovieFragment;
 import com.alex.android.cineworld.pojo.Movie;
 import com.alex.android.cineworld.pojo.ServerResponse;
-import com.example.android.cineworld.R;
-import com.example.android.cineworld.fragments.Favorite;
-import com.example.android.cineworld.fragments.MovieFragment;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.upcoming_image_yellow,     //8
             R.drawable.favorite_image_yellow      //9
     };
-    public ArrayList<Movie> movieArrayList = new ArrayList<>();
+    public ArrayList<Movie> movieArrayList;
     public String failureResponse;
     EndPoint endPointRequest = CineWorldApi.getRequest();
+    MovieFragment movieFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,20 +68,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        MovieFragment movieFragment = MovieFragment.newInstance(movieArrayList);
-
-      /*  getSupportFragmentManager().beginTransaction()
-                .replace(R.id.change_movie, movieFragment)
-                .commit(); */
-
-        MoviePagerAdapter mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager() , movieFragment);
-
-
         ViewPager mViewPager = findViewById(R.id.container);
-        mViewPager.setAdapter(mMoviePagerAdapter);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        setupTabIcons();
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -120,35 +109,48 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        movieFragment = MovieFragment.newInstance(movieArrayList);
+        //MovieFragment movieTopFragment = MovieFragment.newInstance(movieArrayList);
+
+        MoviePagerAdapter mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager(),
+                movieFragment
+                /*movieTopFragment*/);
+        mViewPager.setAdapter(mMoviePagerAdapter);
+        setupTabIcons();
+
     }
 
-    public void getPopularAPI(){
+    public void getPopularAPI() {
         Call<ServerResponse> response = endPointRequest.getPopularMovies(API_KEY);
 
         response.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse serverResponse = response.body();
-                if(serverResponse != null){
+                if (serverResponse != null) {
                     movieArrayList = serverResponse.getResults();
+                    //movieArrayList.addAll(serverResponse.getResults());
+                    Toast.makeText(MainActivity.this, movieArrayList.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 failureResponse = getString(R.string.movies_no_found);
-                Toast.makeText(MainActivity.this, failureResponse , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, failureResponse, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void getTopAPI(){
+    private void getTopAPI() {
         Call<ArrayList<ServerResponse>> response = endPointRequest.getTopRatedMovies(API_KEY);
 
         response.enqueue(new Callback<ArrayList<ServerResponse>>() {
             @Override
             public void onResponse(Call<ArrayList<ServerResponse>> call, Response<ArrayList<ServerResponse>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                 }
             }
@@ -156,18 +158,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArrayList<ServerResponse>> call, Throwable t) {
                 failureResponse = getString(R.string.movies_no_found);
-                Toast.makeText(MainActivity.this, failureResponse , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, failureResponse, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void getPlayingAPI(){
+    private void getPlayingAPI() {
         Call<ArrayList<ServerResponse>> response = endPointRequest.getNowPlayingMovies(API_KEY);
 
         response.enqueue(new Callback<ArrayList<ServerResponse>>() {
             @Override
             public void onResponse(Call<ArrayList<ServerResponse>> call, Response<ArrayList<ServerResponse>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                 }
             }
@@ -175,18 +177,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArrayList<ServerResponse>> call, Throwable t) {
                 failureResponse = getString(R.string.movies_no_found);
-                Toast.makeText(MainActivity.this, failureResponse , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, failureResponse, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void getUpComingAPI(){
+    private void getUpComingAPI() {
         Call<ArrayList<ServerResponse>> response = endPointRequest.getUpcomingMovies(API_KEY);
 
         response.enqueue(new Callback<ArrayList<ServerResponse>>() {
             @Override
             public void onResponse(Call<ArrayList<ServerResponse>> call, Response<ArrayList<ServerResponse>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                 }
             }
@@ -194,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArrayList<ServerResponse>> call, Throwable t) {
                 failureResponse = getString(R.string.movies_no_found);
-                Toast.makeText(MainActivity.this, failureResponse , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, failureResponse, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -288,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
         tabFav.setTextColor(Color.WHITE);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @SuppressLint({"InflateParams", "NewApi"})
     private void setupTabIcons() {
 
@@ -295,27 +298,27 @@ public class MainActivity extends AppCompatActivity {
         tabMost.setText(R.string.most_popular);
         tabMost.setTextColor(Color.WHITE);
         tabMost.setCompoundDrawablesWithIntrinsicBounds(imageResId[5], 0, 0, 0);
-        Objects.requireNonNull(tabLayout.getTabAt(0)).setCustomView(tabMost);
+        tabLayout.getTabAt(0).setCustomView(tabMost);
 
         tabTop = (TextView) LayoutInflater.from(this).inflate(R.layout.name_fragment, null);
         tabTop.setText(R.string.top_rated);
         tabTop.setCompoundDrawablesWithIntrinsicBounds(imageResId[1], 0, 0, 0);
-        Objects.requireNonNull(tabLayout.getTabAt(1)).setCustomView(tabTop);
+        tabLayout.getTabAt(1).setCustomView(tabTop);
 
         tabNow = (TextView) LayoutInflater.from(this).inflate(R.layout.name_fragment, null);
         tabNow.setText(R.string.now_playing);
         tabNow.setCompoundDrawablesWithIntrinsicBounds(imageResId[2], 0, 0, 0);
-        Objects.requireNonNull(tabLayout.getTabAt(2)).setCustomView(tabNow);
+        tabLayout.getTabAt(2).setCustomView(tabNow);
 
         tabUp = (TextView) LayoutInflater.from(this).inflate(R.layout.name_fragment, null);
         tabUp.setText(R.string.upcoming);
         tabUp.setCompoundDrawablesWithIntrinsicBounds(imageResId[3], 0, 0, 0);
-        Objects.requireNonNull(tabLayout.getTabAt(3)).setCustomView(tabUp);
+        tabLayout.getTabAt(3).setCustomView(tabUp);
 
         tabFav = (TextView) LayoutInflater.from(this).inflate(R.layout.name_fragment, null);
         tabFav.setText(R.string.favorite);
         tabFav.setCompoundDrawablesWithIntrinsicBounds(imageResId[4], 0, 0, 0);
-        Objects.requireNonNull(tabLayout.getTabAt(4)).setCustomView(tabFav);
+        tabLayout.getTabAt(4).setCustomView(tabFav);
 
     }
 
@@ -368,18 +371,20 @@ public class MainActivity extends AppCompatActivity {
 
         final int PAGE_COUNT = 5;
         private MovieFragment movieFragment;
+        //private MovieFragment movieTopFragment;
 
         MoviePagerAdapter(FragmentManager fm,
-                          MovieFragment movieFragment) {
+                          MovieFragment movieFragment /*MovieFragment movieTopFragment*/) {
             super(fm);
             this.movieFragment = movieFragment;
+            //this.movieTopFragment = movieTopFragment;
         }
 
         @Override
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return movieFragment;
+                    return new MovieFragment();
                 case 1:
                     return movieFragment;
                 case 2:

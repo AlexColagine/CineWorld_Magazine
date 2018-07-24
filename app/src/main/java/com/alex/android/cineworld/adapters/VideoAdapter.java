@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.alex.android.cineworld.R;
 import com.alex.android.cineworld.pojo.Video;
 import com.alex.android.cineworld.utils.Utils;
-import com.example.android.cineworld.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
