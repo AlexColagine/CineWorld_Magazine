@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         movieFragment = MovieFragment.newInstance(movieArrayList);
         //MovieFragment movieTopFragment = MovieFragment.newInstance(movieArrayList);
-
+        //
         MoviePagerAdapter mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager(),
                 movieFragment
                 /*movieTopFragment*/);

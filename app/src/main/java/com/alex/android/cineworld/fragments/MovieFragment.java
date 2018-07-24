@@ -28,7 +28,7 @@ import static com.alex.android.cineworld.utils.Utils.calculateNoOfColumns;
 
 
 public class MovieFragment extends Fragment implements MovieAdapter.ListItemClickListener, SwipeRefreshLayout.OnRefreshListener {
-
+//
     MovieAdapter mAdapter;
     ArrayList<Movie> movieArrayList;
     private View mEmptyView;
