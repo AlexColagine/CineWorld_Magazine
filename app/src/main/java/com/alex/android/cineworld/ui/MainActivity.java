@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.upcoming_image_yellow,     //8
             R.drawable.favorite_image_yellow      //9
     };
-    public ArrayList<Movie> movieArrayList;
+    public ArrayList<Movie> movieArrayList = new ArrayList<>();
     public String failureResponse;
     EndPoint endPointRequest = CineWorldApi.getRequest();
     MovieFragment movieFragment;
@@ -71,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
         ViewPager mViewPager = findViewById(R.id.container);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        movieFragment = MovieFragment.newInstance(movieArrayList);
+        //MovieFragment movieTopFragment = MovieFragment.newInstance(movieArrayList);
+        //
+        MoviePagerAdapter mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager(),
+                movieFragment
+                /*movieTopFragment*/);
+        mViewPager.setAdapter(mMoviePagerAdapter);
+        setupTabIcons();
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -111,15 +120,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        movieFragment = MovieFragment.newInstance(movieArrayList);
-        //MovieFragment movieTopFragment = MovieFragment.newInstance(movieArrayList);
-        //
-        MoviePagerAdapter mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager(),
-                movieFragment
-                /*movieTopFragment*/);
-        mViewPager.setAdapter(mMoviePagerAdapter);
-        setupTabIcons();
-
     }
 
     public void getPopularAPI() {
@@ -130,8 +130,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse serverResponse = response.body();
                 if (serverResponse != null) {
-                    movieArrayList = serverResponse.getResults();
-                    //movieArrayList.addAll(serverResponse.getResults());
+                    //ArrayList<Movie> movieResponse = serverResponse.getResults();
+                    //movieArrayList = (ArrayList<Movie>)movieResponse.clone();
+                    //movieResponse.addAll(serverResponse.getResults());
+                    //ArrayList<Movie> serverArray = serverResponse.getResults();
+                    //movieArrayList = serverResponse.getResults();
+                    movieArrayList.addAll(serverResponse.getResults());
+                    //movieArrayList.addAll(serverArray);
+                    //movieArrayList = new ArrayList<>(serverResponse.getResults())
                     Toast.makeText(MainActivity.this, movieArrayList.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -386,11 +392,11 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return new MovieFragment();
                 case 1:
-                    return movieFragment;
+                    return new MovieFragment();
                 case 2:
-                    return movieFragment;
+                    return new MovieFragment();
                 case 3:
-                    return movieFragment;
+                    return new MovieFragment();
                 case 4:
                     return new Favorite();
             }
