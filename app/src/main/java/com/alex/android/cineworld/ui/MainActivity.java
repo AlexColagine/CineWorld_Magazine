@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 ServerResponse serverResponse = response.body();
                 if (serverResponse != null) {
                     //ArrayList<Movie> movieResponse = serverResponse.getResults();
-                    //movieArrayList = (ArrayList<Movie>)movieResponse.clone();
+                    ///movieArrayList = (ArrayList<Movie>)movieResponse.clone();
                     //movieResponse.addAll(serverResponse.getResults());
                     //ArrayList<Movie> serverArray = serverResponse.getResults();
                     //movieArrayList = serverResponse.getResults();
